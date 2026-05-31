@@ -1,0 +1,29 @@
+name: AI Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  ai-review:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Generate diff review prompt
+        working-directory: tools/git-diff-review
+        run: node bin/ai-diff-review.mjs --base origin/${{ github.base_ref }} --prompt-only > review-prompt.md
+
+      # Replace this step with a real API call when you are ready.
+      - name: Print review prompt
+        working-directory: tools/git-diff-review
+        run: cat review-prompt.md

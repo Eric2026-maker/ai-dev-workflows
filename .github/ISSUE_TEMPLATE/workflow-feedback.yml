@@ -1,0 +1,53 @@
+name: AI workflow feedback
+description: Share a real development workflow that you want to automate with AI.
+title: "[Feedback] "
+labels: ["feedback", "workflow"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for sharing a real workflow. The more concrete the scenario, the easier it is to turn it into a reusable demo.
+  - type: input
+    id: role
+    attributes:
+      label: Your role
+      description: Backend, frontend, full-stack, tech lead, indie hacker, etc.
+      placeholder: Backend developer
+    validations:
+      required: false
+  - type: textarea
+    id: workflow
+    attributes:
+      label: Workflow to automate
+      description: Which development workflow do you want AI to help with?
+      placeholder: I want AI to review PR diffs and suggest missing tests before merge.
+    validations:
+      required: true
+  - type: textarea
+    id: current-process
+    attributes:
+      label: Current process
+      description: How do you handle this today?
+      placeholder: Reviewers manually scan diffs and leave comments in GitHub.
+    validations:
+      required: true
+  - type: dropdown
+    id: output
+    attributes:
+      label: Preferred output
+      options:
+        - CLI output
+        - GitHub PR comment
+        - Markdown report
+        - Feishu/Slack message
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints
+      description: Privacy, security, language, framework, CI, team rules, etc.
+      placeholder: Private code cannot leave our network.
+    validations:
+      required: false
